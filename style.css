@@ -9,6 +9,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 * {
@@ -18,18 +19,33 @@ body {
 }
 
 body {
+    background-color: black;
+}
+
+#root {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    height: 100%;
+    width: 100%;
     overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin: 10px;
+    max-height: 100%;
+    padding: 0 10px;
+}
+
+#profile-image-container {
+    margin-top: 30px;
+}
+
+#profile-image {
+    width: 220px;
+    height: 220px;
 }
 
 #profile-image,
@@ -50,6 +66,7 @@ h2 {
     display: flex;
     margin-top: 10px;
     justify-content: center;
+    margin-bottom: 30px;
 }
 
 #social-networks img:first-child {
