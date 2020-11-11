@@ -30,44 +30,221 @@ body {
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  position: relative;
 
-  #card {
+  &.visible {
+    height: 100% !important;
+  }
+
+  .banner {
+    position: absolute;
     display: flex;
-    flex-direction: column;
-    max-height: 100%;
-    padding: 0 10px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 
-    #profile-image-container {
-      margin-top: 30px;
+    @media screen and (max-width: 500px) {
+      width: 100%;
+    }
 
-      #profile-image {
-        width: 220px;
-        height: 220px;
+    .card {
+      padding: 0 20px;
+      z-index: 2;
+
+      .profile-image-container {
+        opacity: 0;
+        margin-top: 70%;
+        transition: opacity 1s ease-out,
+        margin-top 0.8s ease-out,
+        margin-bottom 0.8s ease-out;
+
+        &.visible {
+          opacity: 1;
+          margin-top: 0;
+        }
+
+        .profile-image {
+          width: 220px;
+          height: 220px;
+        }
+      }
+
+      .text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 2s ease-out;
+
+        &.visible {
+          max-height: 500px;
+        }
+
+        h1,
+        h2 {
+          width: fit-content;
+          align-self: center;
+          margin: 0 0 10px 0;
+          overflow: hidden;
+          transition: opacity 1s ease-out;
+          position: relative;
+
+          &.visible {
+            opacity: 1;
+          }
+        }
+
+        h1 {
+          font-size: 28px;
+
+          &:first-child {
+            margin-top: 10px;
+          }
+        }
+
+        h2 {
+          font-size: 22px;
+        }
+
+        .engineer {
+          display: flex;
+          justify-content: center;
+
+          &.transition {
+            .cherry {
+              max-width: 500px;
+            }
+
+            .space {
+              width: 7px;
+            }
+
+            &.visible {
+              .black-box {
+                width: 0;
+              }
+            }
+          }
+
+          .cherry {
+            position: relative;
+            max-width: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-end;
+            transition: max-width 2s ease-out;
+
+            .black-box {
+              position: absolute;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              background-color: black;
+              transition: width .5s ease-out;
+            }
+          }
+
+          .space {
+            height: 100%;
+            width: 0;
+            transition: width 0.1s ease-in;
+          }
+        }
+
+        .box {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          top: 0;
+          display: flex;
+          justify-content: flex-end;
+
+          .black {
+            width: 100%;
+            background-color: black;
+          }
+
+          .white {
+            width: 0;
+            background-color: white;
+          }
+
+          .black,
+          .white {
+            transition: width .5s ease-out;
+          }
+
+          &.transition {
+            .black {
+              width: 0;
+            }
+
+            .white {
+              width: 100%;
+            }
+
+            &.hidden {
+              .white {
+                width: 0;
+              }
+            }
+          }
+        }
+
+        .separator {
+          align-self: center;
+          width: 6px;
+          height: 6px;
+          border-radius: 6px;
+          background-color: white;
+          margin: 10px 0 20px 0;
+          opacity: 0;
+          transition: opacity .5s ease-out;
+
+          &.visible {
+            opacity: 1;
+          }
+        }
+
+        .social-networks {
+          display: flex;
+          margin-top: 10px;
+          justify-content: center;
+          opacity: 0;
+          overflow: hidden;
+          transition: opacity 1s ease-out;
+
+          &.visible {
+            opacity: 1;
+          }
+
+          a:first-child {
+            margin-right: 20px;
+          }
+        }
       }
     }
 
-    #profile-image,
-    h1,
-    h2 {
-      margin: 0 0 10px 0;
-    }
+    &.light-mode {
+      background-color: white;
+      transition: clip-path 1s;
+      clip-path: polygon(0 100%, 0 100%, 100% 100%, 100% 100%);
+      z-index: 3;
 
-    h1 {
-      font-size: 28px;
-    }
+      &.visible {
+        clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%);
+      }
 
-    h2 {
-      font-size: 22px;
-    }
+      h1,
+      h2,
+      .cherry,
+      a {
+        color: black;
+      }
 
-    #social-networks {
-      display: flex;
-      margin-top: 10px;
-      justify-content: center;
-      margin-bottom: 30px;
-
-      img:first-child {
-        margin-right: 20px;
+      .separator {
+        background-color: black !important;
       }
     }
   }
